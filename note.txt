@@ -1,0 +1,31 @@
+what kind of error is this: this is because .env file was inside src folder accidentally. 
+solved by: move it to be on the same level as .gitignore and package json
+
+$ npm run dev
+
+> strive-homework-m6-w2-p1@1.0.0 dev
+> nodemon -r dotenv/config ./src/server.js
+
+[nodemon] 2.0.16
+[nodemon] to restart at any time, enter `rs`
+[nodemon] watching path(s): *.*
+[nodemon] watching extensions: js,mjs,json
+[nodemon] starting `node -r dotenv/config ./src/server.js`
+express-validator: a validator/sanitizer with name value does not exist
+express-validator: a validator/sanitizer with name name does not exist
+C:\Users\erliz\OneDrive\Desktop\Homework\Back-end\strive-homework-m6-w2-p1\node_modules\mongoose\lib\connection.js:689
+    throw new MongooseError('The `uri` parameter to `openUri()` must be a ' +
+          ^
+
+MongooseError: The `uri` parameter to `openUri()` must be a string, got "undefined". Make sure the first parameter to `mongoose.connect()` or `mongoose.createConnection()` is a string.
+    at NativeConnection.Connection.openUri (C:\Users\erliz\OneDrive\Desktop\Homework\Back-end\strive-homework-m6-w2-p1\node_modules\mongoose\lib\connection.js:689:11)
+    at C:\Users\erliz\OneDrive\Desktop\Homework\Back-end\strive-homework-m6-w2-p1\node_modules\mongoose\lib\index.js:342:10     
+    at C:\Users\erliz\OneDrive\Desktop\Homework\Back-end\strive-homework-m6-w2-p1\node_modules\mongoose\lib\helpers\promiseOrCallback.js:32:5
+    at new Promise (<anonymous>)
+    at promiseOrCallback (C:\Users\erliz\OneDrive\Desktop\Homework\Back-end\strive-homework-m6-w2-p1\node_modules\mongoose\lib\helpers\promiseOrCallback.js:31:10)
+    at Mongoose._promiseOrCallback (C:\Users\erliz\OneDrive\Desktop\Homework\Back-end\strive-homework-m6-w2-p1\node_modules\mongoose\lib\index.js:1181:10)
+    at Mongoose.connect (C:\Users\erliz\OneDrive\Desktop\Homework\Back-end\strive-homework-m6-w2-p1\node_modules\mongoose\lib\index.js:341:20)
+    at file:///C:/Users/erliz/OneDrive/Desktop/Homework/Back-end/strive-homework-m6-w2-p1/src/server.js:40:10
+    at ModuleJob.run (node:internal/modules/esm/module_job:185:25)
+    at async Promise.all (index 0)
+[nodemon] app crashed - waiting for file changes before starting...
