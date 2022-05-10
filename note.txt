@@ -29,3 +29,18 @@ MongooseError: The `uri` parameter to `openUri()` must be a string, got "undefin
     at ModuleJob.run (node:internal/modules/esm/module_job:185:25)
     at async Promise.all (index 0)
 [nodemon] app crashed - waiting for file changes before starting...
+
+--------------------------------------------------------------------------------------------------------
+
+checking query on postman
+
+http://localhost:3002/blogPosts?sort=title
+
+Incoming request --> GET -- Tue May 10 2022 12:59:47 GMT+0200 (Central European Summer Time)
+REQ.QUERY -->  { sort: 'title' }
+MONGO QUERY -->  {
+  criteria: {},
+  options: { sort: { title: 1 } },
+  links: [Function: links]
+
+---------------------------------------------------------------------------------------------------------
