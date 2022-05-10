@@ -36,6 +36,7 @@ checking query on postman
 
 http://localhost:3002/blogPosts?sort=title
 
+result:
 Incoming request --> GET -- Tue May 10 2022 12:59:47 GMT+0200 (Central European Summer Time)
 REQ.QUERY -->  { sort: 'title' }
 MONGO QUERY -->  {
@@ -43,4 +44,36 @@ MONGO QUERY -->  {
   options: { sort: { title: 1 } },
   links: [Function: links]
 
+anpther result:
+Incoming request --> GET -- Tue May 10 2022 13:13:19 GMT+0200 (Central European Summer Time)
+REQ.QUERY -->  { sort: 'title', limit: '3', 'value>2': '' }
+MONGO QUERY -->  {
+  criteria: { value: { '$gt': 2 } },
+  options: { sort: { title: 1 }, limit: 3 },
+  links: [Function: links]
+}
 ---------------------------------------------------------------------------------------------------------
+
+when accidentally deleted node_modules or downloaded repo from github without node_modules
+
+use : npm install or npm i
+to get node_modules Back
+-------------------------------------------------------------------------------------------------------------
+
+res.send({
+      links: mongoQuery.links(`${process.env.API_URL}/books`, total),
+      total,
+      totalPages: Math.ceil(total / mongoQuery.options.limit),
+      books,
+    })
+
+    the same as:
+res.send({
+        links: mongoQuery.links("http://localhost:3002/blogPosts", total),
+        total,
+        totalPages: Math.ceil(total / mongoQuery.options.limit),
+        posts,
+
+(the first has url at .env => API_URL= http://localhost:3002)
+
+------------------------------------------------------------------------------------------------------------------

@@ -37,17 +37,24 @@ postsRouter.get("/", async (req,res,next)=>{
 
         const mongoQuery = q2m(req.query)
 
+        const total = await postsModel.countDocuments(mongoQuery.criteria)
+
         // Safety measure //
         if (!mongoQuery.options.skip) mongoQuery.options.skip = 0
-        if (!mongoQuery.options.limit || mongoQuery.options.limit > 10) mongoQuery.options.limit = 20
-        // //
+        if (!mongoQuery.options.limit || mongoQuery.options.limit > 2) mongoQuery.options.limit = 5
+        
 
         const posts = await postsModel.find(mongoQuery.criteria, mongoQuery.options.fields)
         .skip(mongoQuery.options.skip)
         .limit(mongoQuery.options.limit)
         .sort(mongoQuery.options.sort)
 
-        res.send(posts)
+        res.send({
+        links: mongoQuery.links("http://localhost:3002/blogPosts", total),
+        total,
+        totalPages: Math.ceil(total / mongoQuery.options.limit),
+        posts,
+    })
     } catch (error) {
         next(error)
     }

@@ -21,18 +21,20 @@ const schema = {
         }
       },
       readTime: {
+        
         value:{
         in: ["body"],
         isNumber: {
           errorMessage: "value validation failed! value should be in number!",
-        },
+        }
+      ,
         unit:{
             in: ["body"],
             isString: {
               errorMessage: "unit validation failed! unit should be stated as minute/minutes!",
             }
       }
-    }
+    }  
     },
 
     author: {
@@ -40,14 +42,15 @@ const schema = {
         in: ["body"],
         isString: {
           errorMessage: "name validation failed! name is a mandatory field and needs to be a string!",
-        },
+        }
+      ,
         avatar:{
-            in: ["body"],
-            isString: {
-              errorMessage: "avatar validation failed! avatar is not in the right format!",
-            }
+        in: ["body"],
+        isString: {
+          errorMessage: "avatar validation failed! avatar is not in the right format!",
+        }
       }
-    }
+        }
     },
     content: {
         in: ["body"],
