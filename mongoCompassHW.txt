@@ -1,0 +1,46 @@
+*************Find all records with:	**************
+------------------------------------------------------------
+isActive equals to true	
+
+FILTER: {isActive:"true"}	
+
+Number of records: 51
+------------------------------------------------------------
+age greater than 26	
+
+FILTER: {age:{$gt:26}}	
+
+Number of records:54
+------------------------------------------------------------
+age greater than 26 and lower or equal than 30	
+
+FILTER: {$and: [{age:{$gt:26}},{age:{$lte:30}}]}
+
+Number of records:19
+------------------------------------------------------------
+brown or blue eyes	
+
+FILTER: {eyeColor:{$in:["blue","brown"]}}	
+
+Number of records:66
+------------------------------------------------------------
+no green eyes	
+
+FILTER: {eyeColor:{$ne:"green"}}
+
+Number of records:66
+------------------------------------------------------------
+no green eyes nor blue	
+
+FILTER: {eyeColor:{$nin:["green","blue"]}}
+
+Number of records:35
+------------------------------------------------------------
+company==="FITCORE" and return email only
+
+FILTER: {company:"FITCORE"}
+PROJECT: {email:1}	
+
+Number of records:1
+(email : "victoria.solis@fitcore.biz")
+------------------------------------------------------------
