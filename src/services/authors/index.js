@@ -30,8 +30,28 @@ try {
 //2.
 authorsRouter.get("/", async (req,res)=>{
     try {
-        const authors = await authorsModel.find()
-        res.send(authors)
+        console.log("REQ.QUERY --> ", req.query)
+        console.log("MONGO QUERY --> ", q2m(req.query))
+
+        const mongoQuery = q2m(req.query)
+
+        const total = await authorsModel.countDocuments(mongoQuery.criteria)
+
+        // Safety measure //
+        if (!mongoQuery.options.skip) mongoQuery.options.skip = 0
+        if (!mongoQuery.options.limit || mongoQuery.options.limit > 10) mongoQuery.options.limit = 20
+        
+        const authors = await authorsModel.find(mongoQuery.criteria, mongoQuery.options.fields)
+        .skip(mongoQuery.options.skip)
+        .limit(mongoQuery.options.limit)
+        .sort(mongoQuery.options.sort)
+
+        res.send({
+            links: mongoQuery.links("http://localhost:3002/authors", total),
+            total,
+            totalPages: Math.ceil(total / mongoQuery.options.limit),
+            authors
+        })
     } catch (error) {
         next(error)
     }

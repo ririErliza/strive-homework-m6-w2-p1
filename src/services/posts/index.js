@@ -39,7 +39,7 @@ postsRouter.get("/", async (req,res,next)=>{
 
         // Safety measure //
         if (!mongoQuery.options.skip) mongoQuery.options.skip = 0
-        if (!mongoQuery.options.limit || mongoQuery.options.limit > 2) mongoQuery.options.limit = 5
+        if (!mongoQuery.options.limit || mongoQuery.options.limit > 10) mongoQuery.options.limit = 20
         
 
         const posts = await postsModel.find(mongoQuery.criteria, mongoQuery.options.fields)
