@@ -25,8 +25,6 @@ postsRouter.post("/", checkUserMiddleware, checkValidationResult, async (req,res
         next(error)
     }
 
-    
-
 })
 
 //2.
