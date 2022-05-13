@@ -1,4 +1,4 @@
-what kind of error is this: this is because .env file was inside src folder accidentally. 
+what kind of error is this: this is because .env file was inside src folder accidentally. It can also because I forgot to type MONGO_CONNECTION_URL inside .env folder
 solved by: move it to be on the same level as .gitignore and package json
 
 $ npm run dev
@@ -77,3 +77,100 @@ res.send({
 (the first has url at .env => API_URL= http://localhost:3002)
 
 ------------------------------------------------------------------------------------------------------------------
+
+this error : 
+express-validator: a validator/sanitizer with name value does not exist
+express-validator: a validator/sanitizer with name name does not exist
+
+because the validation schema was not properly typed.
+
+need to type it like this:
+const schema = {
+  category: {
+    in: ["body"],
+    isString: {
+      errorMessage: "category validation failed, type must be  string ",
+    },
+  },
+  title: {
+    in: ["body"],
+    isString: {
+      errorMessage: "title validation failed, type must be string  ",
+    },
+  },
+  content: {
+    in: ["body"],
+    isString: {
+      errorMessage: "content validation failed, type must be string ",
+    },
+  },
+  "author.name": {
+    in: ["body"],
+    isString: {
+      errorMessage: "author.name validation failed, type must be string",
+    },
+  },
+  "author.avatar": {
+    in: ["body"],
+    isString: {
+      errorMessage: "author.avatar validation failed, type must be string",
+    },
+  },
+  "readTime.value": {
+    in: ["body"],
+    isNumeric: {
+      errorMessage: "readTime.value validation failed, type must be numeric",
+    },
+  },
+  "readTime.unit": {
+    in: ["body"],
+    isString: {
+      errorMessage: "readTime.unit validation failed, type must be string",
+    },
+  },
+  cover: {
+    in: ["body"],
+    isString: {
+      errorMessage: "cover validation failed, type must be string",
+    },
+  },
+}
+
+
+the wrong one:
+const schema = {
+    category: {
+        in: ["body"],
+        isString: {
+          errorMessage: "Category validation failed! category is a mandatory field and needs to be a string!",
+        }
+      },
+      title: {
+        in: ["body"],
+        isString: {
+          errorMessage: "title validation failed! title is a mandatory field and needs to be a string!",
+        }
+      },
+      cover: {
+        in: ["body"],
+        isString: {
+          errorMessage: "cover validation failed! cover is not in the right format!",
+        }
+      },
+      readTime: {
+        
+        value:{
+        in: ["body"],
+        isNumber: {
+          errorMessage: "value validation failed! value should be in number!",
+        }
+      ,
+        unit:{
+            in: ["body"],
+            isString: {
+              errorMessage: "unit validation failed! unit should be stated as minute/minutes!",
+            }
+      }
+    }  
+    },
+----------------------------------------------------------------------------------------------------
